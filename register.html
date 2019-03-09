@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/register.css"/>
+</head>
+
+<body>
+<div id="head">
+    <div class="Bd_logo">
+        <a href="index.html">
+            <img src="images/baidu.gif" alt="百度一下"/>
+            <span class="reg_title">注册百度账号</span>
+        </a>
+    </div>
+    <div class="goTo_login">
+        <span>我已注册，现在就</span>
+        <div><a style="color: #666" href="login.html">登录</a></div>
+    </div>
+</div>
+<div class="nav1">
+    <div class="nav2">
+        <div class="nav3"></div>
+    </div>
+</div>
+<!--注册界面-->
+<div id="main">
+    <div class="main">
+        <!--注册表单-->
+        <div id="register">
+            <form action="">
+                <div class="form_box">
+                    <label for="setAccount">用户名</label>
+                    <input id="setAccount" type="text" placeholder="请设置用户名"/>
+                </div>
+                <div class="form_box">
+                    <label for="inputNum">手机号</label>
+                    <input id="inputNum" type="text" placeholder="用于登录和找回密码"/>
+                </div>
+                <div class="form_box">
+                    <label for="setPassword">密码</label>
+                    <input id="setPassword" type="password" placeholder="请设置登录密码"/>
+                </div>
+
+                <div class="form_box">
+                    <label for="inputVer">验证码</label>
+                    <input id="inputVer" type="text" placeholder="请输入验证码"/>
+                    <span class="get_text">获取短信验证码</span>
+                </div>
+                <div class="read">
+                    <input id="check" type="checkbox"/>
+                    <label for="check">阅读并接受</label>
+                    <a href="#">《百度用户协议》</a>及<a href="#">《百度隐私权保护声明》</a>
+                </div>
+                <div class="submit">
+                    <input id="submit" type="button" value="注册"/>
+                </div>
+
+                <!--右侧提示-->
+
+                <div class="tips_style">
+                    <div id="tips_1">
+                        <p>设置后不可更改<br/>中英文均可，最长14个英文或汉字</p>
+                    </div>
+
+                    <div id="tips_2">
+                        <p>请输入中国大陆手机号，其他用户不可见</p>
+                    </div>
+                    <div id="tips_3">
+                        <i class="arrow"><</i>
+                        <ul>
+                        <li><p id="pwE_1"><em>o</em>长度为8~14个字符</p></li>
+                        <li><p id="pwE_2"><em>o</em>支持数字，大小写字母和标点符号</p></li>
+                        <li><p id="pwE_3"><em>o</em>不允许有空格</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="Error">
+                    <div id="accError">
+                        <p id="aE_1">用户名仅支持中英文、数字和下划线,且不能为纯数字</p>
+                        <p id="aE_2">用户名不能超过7个汉字或14个字符</p>
+                        <p id="aE_3" style="color:#00B262">√</p>
+                    </div>
+                    <div id="phoError">
+                        <p id="pE_1">手机号码格式不正确</p>
+                        <p id="pE_3" style="color: #00B262">√</p>
+                    </div>
+                </div>
+                <div id="plsInp">
+                    <p class="plsInp">请您输入用户名</p>
+                    <p class="plsInp">请您输入手机号</p>
+                    <p class="plsInp">请您输入密码</p>
+                    <p class="plsInp">请您输入验证码</p>
+                    <p class="plsInp">请勾选“阅读并接受百度用户协议”</p>
+                </div>
+            </form>
+        </div>
+        <!--快速注册-->
+        <div id="reg_quick">
+            <div class="rq_title">
+                <i class="rq_phone"></i><span>手机快速注册</span>
+            </div>
+            <div class="rq_direction">
+                <div>
+                    <p class="dir1">请使用中国大陆手机号，编辑短信:</p>
+                    <p class="dir2">8-14位字符（支持数字/字母/符号）</p>
+                </div>
+                <div>
+                    <p class="dir1">作为登录密码，发送至：</p>
+                    <p class="dir2">1069 0691 036590</p>
+                </div>
+                <div>
+                    <p class="dir1">即可注册成功，手机号即为登录帐号。</p>
+                    <p class="dir3">
+                        快速注册即视为您同意<a href="#">百度用户协议</a>和 <a href="#">百度隐私权保护声明</a>
+                    </p>
+                </div>
+            </div>
+            <div class="QR_Code">
+                <div><img src="images/Baidu.png" alt=""/></div>
+                <p>请使用手机百度进行扫码</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="copy">
+    <p>2019 ©Baidu</p>
+</div>
+
+
+<script>
+
+    /*用户名输入框-提示-检测-报错*/
+    var $sa = document.getElementById("setAccount");
+    var $t1 = document.getElementById("tips_1");
+    var $aE = document.getElementById("accError");
+    var $aE1 = document.getElementById("aE_1");
+    var $aE2 = document.getElementById("aE_2");
+    var $aE3 = document.getElementById("aE_3");
+    var aep = $aE.getElementsByTagName("p");
+    var pi = document.getElementsByClassName("plsInp");
+
+    var aEhide = function (){      /*封装隐藏报错提示函数*/
+        for(var i = 0; i < aep.length; i++){
+        aep[i].style.display ="none"
+    }};
+
+    $sa.onfocus = function(){       /*显示输入提示*/
+        aEhide();
+        pi[0].style.display = "none";
+        $t1.style.display = "block";
+    };
+
+    $sa.onblur = function() {
+        $t1.style.display = "none";   /*检测之前清除已有提示*/
+        aEhide();
+        var reg1 = /^[\u4e00-\u9Fa5a-zA-Z_0-9]+$/g;  /*正则表达式×4*/
+        var reg2 = /[\u4E00-\u9FA5]/g;
+        var reg3 = /[0-9a-zA-Z_]/g;
+        var reg4 = /^[0-9]+$/;
+        if (this.value !== "") {/*检测是否有输入内容*/
+            if (reg1.test(this.value)) {    /*对输入内容进行检测*/
+                var arr1 = this.value.match(reg2);
+                var arr2 = this.value.match(reg3);
+                arr1 == null?arr1="":arr1;  /*没有匹配到时是null，会报错*/
+                arr2 == null?arr2="":arr2;
+                if (arr1.length*2 + arr2.length <= 14) {    /*判断字符长度是否符合*/
+                    if(reg4.test(this.value)){
+                        $aE1.style.display = "block"
+                    }
+                    else{
+                        $aE3.style.display = "block"
+                    }
+                } else {
+                    $aE2.style.display = "block"
+                }
+            } else {
+                $aE1.style.display = "block"
+            }
+        }};
+
+
+    /*手机号输入框提示-检测-报错*/
+    var $in = document.getElementById("inputNum");
+    var $t2 = document.getElementById("tips_2");
+    var $pE = document.getElementById("phoError");
+    var $pE1 = document.getElementById("pE_1");
+    var $pE2 = document.getElementById("pE_2");
+    var $pE3 = document.getElementById("pE_3");
+    var pEp = $pE.getElementsByTagName("p");
+
+    var pEhide = function(){        /*封装隐藏报错提示函数*/
+        for(var i = 0; i < pEp.length; i++){
+        pEp[i].style.display ="none"
+    }};
+
+    $in.onfocus = function(){
+        pEhide();
+        pi[1].style.display = "none";
+        $t2.style.display = "block";
+    };
+
+    $in.onblur = function() {
+        $t2.style.display = "none";  /*检测之前清除已有提示*/
+        pEhide();
+        if(this.value !== ""){
+        var reg = /^1[3|4|5|7|8][0-9]{9}$/;
+        if(reg.test(this.value)){
+            $pE3.style.display = "block"
+        }else{
+            $pE1.style.display = "block"
+        }
+    }};
+
+
+    /*密码输入框提示-检测-报错*/
+    var $spw = document.getElementById("setPassword");
+    var $t3 = document.getElementById("tips_3");
+    var pwE1 = document.getElementById("pwE_1");
+    var pwE2 = document.getElementById("pwE_2");
+    var pwE3 = document.getElementById("pwE_3");
+
+    $spw.onfocus = function() {     /*获得焦点显示提示*/
+        $t3.style.display = "block";
+        pi[2].style.display = "none";
+    };
+
+    $spw.onkeyup = function(){
+
+        if(this.value == ""){       /*无输入恢复提示样式*/
+            (function(){        /*清理提示样式*/
+                var em = $t3.getElementsByTagName("em");
+                var p = $t3.getElementsByTagName("p");
+                for(var i = 0; i < em.length; i++){
+                    em[i].innerText = "o";
+                    em[i].style.color = "";
+                    p[i].style.color = "";
+                }
+            })();
+        }
+        if(this.value !== ""){
+            var reg2 = / /;
+            var reg1 = /^[0-9a-zA-Z`~!@#$%^&*()_+-={}|:;"',.<>? ]+$/g;
+
+            if(reg1.test(this.value)){      /*检测字符是否符合规则*/
+                pwE2.getElementsByTagName("em")[0].innerText = "√";
+                pwE2.getElementsByTagName("em")[0].style.color = "#00B262";
+                pwE2.style.color = "#00B262";
+            }else{
+                pwE2.getElementsByTagName("em")[0].innerText = "×";
+                pwE2.getElementsByTagName("em")[0].style.color = "red";
+                pwE2.style.color = "red"
+            }
+
+            if(reg2.test(this.value)){      /*检测是否有空格*/
+                pwE3.getElementsByTagName("em")[0].innerText = "×";
+                pwE3.getElementsByTagName("em")[0].style.color = "red";
+                pwE3.style.color = "red"
+            }else{
+                pwE3.getElementsByTagName("em")[0].innerText = "√";
+                pwE3.getElementsByTagName("em")[0].style.color = "#00B262";
+                pwE3.style.color = "#00B262";
+            }
+
+            if(this.value.length >= 8 && this.value.length <= 16){      /*检测长度是否符合规则*/
+                pwE1.getElementsByTagName("em")[0].innerText = "√";
+                pwE1.getElementsByTagName("em")[0].style.color = "#00B262";
+                pwE1.style.color = "#00B262";
+            }else{
+                pwE1.getElementsByTagName("em")[0].innerText = "×";
+                pwE1.getElementsByTagName("em")[0].style.color = "red";
+                pwE1.style.color = "red"
+            }
+    }};
+
+    $spw.onblur = function(){       /*表单失去焦点并无输入则隐藏提示*/
+        if(this.value == ""){
+            $t3.style.display = "none"
+        }
+    };
+
+
+    var inpV = document.getElementById("inputVer");
+    inpV.onfocus = function(){
+        pi[3].style.display = "none";
+    };
+
+    var ck = document.getElementById("check");
+    ck.onfocus = function(){
+      pi[4].style.display = "none"  ;
+    };
+    /*提交表单检测是否填写完全*/
+
+    var rg = document.getElementById("register");
+    var inps = rg.getElementsByTagName("input");
+    var sub = document.getElementById("submit");
+    var fb = document.getElementsByClassName("form_box");
+
+    sub.onclick = function(){
+        for(var i = 0; i < inps.length-2; i++){
+            if(inps[i].value == ""){
+                pi[i].style.display = "block";
+
+            }else{
+                pi[i].style.display = "none";
+            }
+            if(ck.checked == false){
+                pi[4].style.display = "block";
+            }else{
+                pi[4].style.display = "none";
+            }
+        }
+    };
+
+
+
+</script>
+</body>
+</html>
